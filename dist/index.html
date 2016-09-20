@@ -2,13 +2,141 @@
 <html lang='en'>
 	
 	<head>
-		<title>MyLocalPitch.com - Frontend Developer Test 18-09-2016</title>
+
+		<title>AngularJS Example featuring ZooSlides by ZOODUCK - 19-09-2016</title>
+		
 		<meta charset='utf-8' />
 		<meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=no' />
+		<meta name='author' content='zooduck, wesley pumpkinhead' />
+		
+		<link rel='stylesheet' href='css/main.css' />
+		
+		<script src='js/vendor/angular.js'></script>	
+		<script data-main='js/app.js' src='js/vendor/require.js'></script>
+
 	</head>
 
-	<body>
-		NO CONTENT!
+	<body ng-controller='MainController' ng-class='{"mobile-menu-active": mobile_menu}'>
+		
+		<div class='header' app-header ng-class='{"mobile-menu-active": mobile_menu || scrollTop > 1}'>			
+			<div class='menu'>				
+				<img class='header-logo' src='http://placehold.it/200x60/0069ff/ee' alt='' />
+				<ul class='hidden-sm'>
+					<li><a href='#'>Products</a></li>
+					<li><a href='#'>Pricing</a></li>
+					<li><a href='#'>Community</a></li>
+				</ul>
+			</div>
+			<div class='menu'>
+				<ul class='hidden-sm'>
+					<li><a href='#'>API</a></li>
+					<li><a href='#'>Help</a></li>
+					<li><a href='#'>Login</a></li>
+					<li><button type='button'>Sign Up</button></li>
+				</ul>
+				<div class='mobile-menu-toggle visible-xs' ng-click='mobile_menu = !mobile_menu'>Menu</div>
+			</div>
+		</div>
+
+		<div class='login-content'>
+			<div login-form>
+				<div class='login-form'>
+					<h1>Be Nice or Eat Some Rice.</h1>
+					<form>
+						<div class='input-wrapper' ng-class='{"active": email}'>
+							<input type='text' id='email' ng-model='email' placeholder='Email Address' />
+							<label>Email Address</label>
+						</div>
+						<div class='input-wrapper' ng-class='{"active": password}'>
+							<input type='text' id='password' ng-model='password' placeholder='Password' />
+							<label>Password</label>
+						</div>
+						<button type='button'>Create an Account</button>
+						<div class='tandc'>By signing up, you agree to the <a href='#'>Terms of Sentence.</a></div> 
+					</form>
+				</div>
+				<div class='login-form-image'>
+					<img src='http://placehold.it/540x480' alt='' />
+				</div>
+			</div>
+		</div>
+
+		<div key-points class='key-points-content'>
+			<h1 class='title'>Bovendien hoofdzaak tot vereenigd gif als.</h1>
+			<div class='row'>
+				<div class='key-point col-xs-6 col-sm-6 col-md-4' ng-repeat='point in keypoints'>
+					<img ng-src='{{point.image_url}}' alt='' />
+					<h2>{{point.title}}</h2>
+					<div class='description'>{{point.description}}</div>					
+				</div>
+			</div>
+		</div>
+		
+		<div class='price-plans-title'>
+			<h1 class='title'>Вознес Жив Див Кладет Муж дел гибели мая Ему славою.</h1>
+		</div>
+
+		<div class='row toggle-switch-container'>
+			<div class='text'>MONTHLY</div>
+			<div class='toggle-switch-wrapper' ng-click='switchSelectedPricePlan()' ng-class='{"hourly": selected_price_plan == "hourly", "monthly": selected_price_plan == "monthly"}'>
+				<div class='toggle-switch'></div>
+			</div>
+			<div class='text'>HOURLY</div>
+		</div>		
+
+		<div zoo-slides draggable='true' ondragstart='return false'>			
+			<div class='price-plans-container'>
+				<ul class='price-plans'>
+					<li zoo-slide ng-repeat='slide in zoo_slides' ng-class='{"active": slide.active}' ng-click='shiftZooSlides(slide.index)'>
+						<div>
+							<span class='ccy'>$</span>
+							<span ng-show='selected_price_plan == "monthly"' class='price'>{{slide.price.monthly}}</span>
+							<span ng-show='selected_price_plan == "hourly"' class='price'>{{slide.price.hourly}}</span>
+							<span ng-show='selected_price_plan == "monthly"' class='mo'>/mo</span>
+							<span ng-show='selected_price_plan == "hourly"' class='mo'>/hr</span>
+						</div>						
+						<ul>
+							<li><strong>{{slide.memory}}</strong> Rice</li>
+							<li><strong>{{slide.cpu}}</strong> Dinosaur</li>
+							<li><strong>{{slide.hdd}}</strong> BIG Data</li>
+							<li><strong>{{slide.transfer}}</strong> Potatos</li>
+						</ul>
+					</li>					
+				</ul>
+			</div>		
+		</div>
+
+		<ul class='price-plan-dots'>
+				<li ng-repeat='slide in zoo_slides' ng-class='{"active": slide.active}' ng-click='shiftZooSlides(slide.index)'></li>
+		</ul>
+
+		<div class='row'>
+			<button type='button' class='button-wide'>View more sands</button>
+		</div>
+
+		<div class='row'>
+			<span class='base-color-light'>Pricing in RUB. Excludes any dithpicable tax.</span>
+		</div>
+
+		<div class='mobile-menu visible-xs hidden-sm' ng-class='{"active": mobile_menu}'>
+			<ul>
+				<li><a href='#'>Products</a></li>
+				<li><a href='#'>Pricing</a></li>
+				<li><a href='#'>Tutorials</a></li>
+				<li><a href='#'>Network Status</a></li>
+				<li><a href='#'>Careers</a></li>
+				<li class='login'><a href='#' class='login'>Login</a></li>
+				<li class='login'><a href='#' class='login'>Sign Up</a></li>				
+			</ul>
+		</div>
+
+		<footer class='footer'>			
+			<ul class='copyright'>				
+				<li>ZOODUCK <sup>Web</sup> Tech</li>
+				<li>/// copyright &#169; 2016</li>
+			</ul>
+		</footer>
+		
 	</body>
 
 </html>

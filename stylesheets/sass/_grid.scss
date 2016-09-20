@@ -1,0 +1,33 @@
+.row{
+  display: block;
+  width: 100%;
+  clear: both;
+  padding: 10px;
+}
+img{
+  max-width: 100%;
+}
+/* default: */
+[class*='col-']{
+  width: 100%;
+}
+$widths: 480px, 768px, 992px, 1100px;
+$sizes: xs, sm, md, lg;
+$names: mobile, tablet, desktop, widescreen;
+$percentages: 8.33%, 16.66%, 25%, 33.33%, 41.66%, 50%, 58.33%, 66.6%, 75%, 83.33%, 91.66%, 100%;
+$cols: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12;
+@each $width in $widths{
+  $width-index: index($widths, $width);
+  $desc: nth($names, $width-index);
+  /* for #{$desc}: */
+  @media (min-width: #{$width}){
+    @each $percent in $percentages{
+      $i: index($percentages, $percent);
+      $size: nth($sizes, $width-index);
+      .col-#{$size}-#{$i}{
+        float: left;
+        width: $percent;
+      }
+    }
+  }
+}

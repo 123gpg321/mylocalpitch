@@ -1,0 +1,8 @@
+$vendor-prefixes: '::-webkit-input-placeholder' '::-moz-placeholder' ':-ms-input-placeholder' ':-moz-placeholder';
+@mixin placeholder($class, $color){
+  @each $prefix in $vendor-prefixes{
+    #{&$class}#{$prefix}{
+      color: $color;
+    }
+  }
+}
